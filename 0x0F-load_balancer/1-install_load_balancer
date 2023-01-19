@@ -12,6 +12,6 @@ frontend http_front
 backend http_back
 	balance roundrobin
 	server web-01 100.24.253.170 check
-	server web-02 54.87.253.122 check
+	server web-02 34.224.3.83 check
 " >> /etc/haproxy/haproxy.cfg
 service haproxy restart

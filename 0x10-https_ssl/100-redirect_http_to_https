@@ -38,13 +38,13 @@ listen pyrocenter
         balance roundrobin
         server 84054-web-01 100.24.253.170 check
         server 84054-web-02 34.224.3.83 check
-frontend  web-frontend-http
+frontend www-http
         bind *:80
         mode http
 	http-request set-header X-Forwarded-Proto http
         default_backend web-backend
 
-frontend web-frontend-https
+frontend www-https
 	bind *:443 ssl crt /etc/haproxy/certs/www.pyrocenter.tech.pem
 	http-request set-header X-Forwarded-Proto https
 	http-request redirect scheme https code 301 unless { ssl_fc }

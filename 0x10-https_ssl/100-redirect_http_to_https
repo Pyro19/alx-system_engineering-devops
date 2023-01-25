@@ -32,12 +32,14 @@ defaults
 	errorfile 502 /etc/haproxy/errors/502.http
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
+
 listen pyrocenter
         bind :80
         mode http
         balance roundrobin
         server 84054-web-01 100.24.253.170 check
         server 84054-web-02 34.224.3.83 check
+
 frontend www-http
         bind *:80
         mode http

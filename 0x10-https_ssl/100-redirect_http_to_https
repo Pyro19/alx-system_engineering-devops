@@ -32,20 +32,25 @@ defaults
 	errorfile 502 /etc/haproxy/errors/502.http
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
-
-frontend  pyrocenter-frontend-http
+listen pyrocenter
+        bind :80
+        mode http
+        balance roundrobin
+        server 84054-web-01 100.24.253.170 check
+        server 84054-web-02 34.224.3.83 check
+frontend  web-frontend-http
         bind *:80
         mode http
 	http-request set-header X-Forwarded-Proto http
-        default_backend pyrocenter-backend
+        default_backend web-backend
 
-frontend pyrocenter-frontend-https
+frontend web-frontend-https
 	bind *:443 ssl crt /etc/haproxy/certs/www.pyrocenter.tech.pem
 	http-request set-header X-Forwarded-Proto https
 	http-request redirect scheme https code 301 unless { ssl_fc }
-	default_backend pyrocenter-backend
+	default_backend web-backend
 
-backend pyrocenter-backend
-        balance roundrobin
+backend web-backend
+        redirect scheme https if !{ ssl_fc }
         server 84054-web-01 100.24.253.170 check
         server 84054-web-02 34.224.3.83 check

@@ -4,7 +4,6 @@ sudo ufw enable
 sudo vim /etc/default/ufw
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
-sudo ufw app list
 sudo ufw allow ssh
 sudo ufw allow 22/tcp
 sudo ufw allow http

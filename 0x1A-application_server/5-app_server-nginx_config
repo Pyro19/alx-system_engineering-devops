@@ -13,9 +13,11 @@
 
 # Default server configuration
 #
-server {
+server { 
        listen 80 default_server;
-
+location / { proxy_pass http://0.0.0.0:5003/2-hbnb; }
+location /static/ {proxy_pass http://0.0.0.0:5003; }
+location /api/ { proxy_pass http://0.0.0.0:5002; }
 location ~ ^/airbnb-dynamic/number_odd_or_even/(\d+)$ { proxy_pass http://0.0.0.0:5001/number_odd_or_even/$1; }
 location /airbnb-onepage/ { proxy_pass http://0.0.0.0:5000; }
 location /hbnb_static/ {alias /data/web_static/current/;}
@@ -51,11 +53,11 @@ location = /custom_404.html { root /usr/share/nginx/html; internal; }
 
 	 server_name _;
 
-	 location / {
+#	 location / {
 	 	  # First attempt to serve request as file, then
 		    # as directory, then fall back to displaying a 404.
-		      try_files $uri $uri/ =404;
-		      }
+#		      try_files $uri $uri/ =404;
+#		      }
 
 		      # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
 		      #

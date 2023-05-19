@@ -36,5 +36,6 @@ Test the application before deploying. This error would have arisen and could ha
 Note that in response to this error, I wrote a Puppet manifest 0-strace_is_your_friend.pp to automate fixing of any such identitical errors should they occur in the future. The manifest replaces any phpp extensions in the file /var/www/html/wp-settings.php with php.
 
 But of course, it will never occur again, because we’re programmers, and we never make errors! 
+
 ![image](https://github.com/Pyro19/alx-system_engineering-devops/assets/106750453/927df1b2-e52a-48f9-a830-4bfd9755d72d)
 
